@@ -1,0 +1,11 @@
+<!-- <span class="glyphicon glyphicon-heart" 
+  [style.color]="isActive ? 'deeppink': '#ccc' "
+  (click)="onClicked()">  
+</span>  -->
+<span class="glyphicon glyphicon-heart" 
+  [class.highlighted]="isActive"
+  (click)="onClicked()">  
+</span> 
+<span style="font-size:25px;">
+  {{likesCount}}
+</span>

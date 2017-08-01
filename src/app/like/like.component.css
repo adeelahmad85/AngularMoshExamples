@@ -1,0 +1,11 @@
+/* .glyphicon-heart{    
+    cursor: pointer;
+} */
+.glyphicon {    
+    color: #ccc;
+    cursor: pointer;
+}
+
+.highlighted{
+    color: deeppink;
+}
