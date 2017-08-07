@@ -16,8 +16,10 @@
     <div class="alert alert-danger" *ngIf="category.touched &&!category.valid">Category is required.</div>    
   </div>
   <div class="checkbox">
-    <label></label>
-    <input ngModel name="hasGuarantee" id="hasGuarantee" type="checkbox">30-Day money back guarantee.
+    <label>
+      <input ngModel name="hasGuarantee" id="hasGuarantee" type="checkbox">
+      30-Day money back guarantee.
+    </label>
   </div>
   <p>
     {{ f.value | json}}
