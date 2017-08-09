@@ -19,6 +19,11 @@ export class SignupFormComponent {
     password: new FormControl('',Validators.required)
   });
 
+  onSubmit(){
+    this.form.setErrors({
+      invalidLogin: true
+    });
+  }
   get username(){
     return this.form.get('username');
   }
