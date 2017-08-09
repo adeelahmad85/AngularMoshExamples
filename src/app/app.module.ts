@@ -1,5 +1,6 @@
+import { SignupFormComponent } from './signup-form/signup-form.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -19,11 +20,13 @@ import { CourseFormComponent } from './course-form/course-form.component';
     TitleCasePipe,
     LikeComponent,
     ZippyComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthorsService],
   bootstrap: [AppComponent]
