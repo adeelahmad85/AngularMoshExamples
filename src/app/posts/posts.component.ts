@@ -1,5 +1,9 @@
+import { BadRequestError } from './../common/bad-request-error';
+import { NotFoundError } from './../common/not-found-error';
+import { AppError } from './../common/app-error';
 import { PostService } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'posts',
@@ -18,11 +22,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPosts().subscribe(response => {
       this.posts = response.json();
-    },
-      error => {
-        alert("An unexpected error occured.");
-        console.log(error);
-      });
+    });
   }
 
   createPost(input: HTMLInputElement) {
@@ -37,13 +37,12 @@ export class PostsComponent implements OnInit {
 
       this.posts.splice(0, 0, post);
     },
-      (error: Response) => {
+      (error: AppError) => {
 
-        if (error.status === 400) {
-          // this.form.setErrors(error.json());
+        if (error instanceof BadRequestError) {
+          // this.form.setErrors(error.originalError);
         } else {
-          alert("An unexpected error occured.");
-          console.log(error);
+          throw error;
         }
 
       });
@@ -53,26 +52,21 @@ export class PostsComponent implements OnInit {
   updatePost(post) {
     this.service.updatePost(post).subscribe(response => {
       console.log(response.json());
-    },
-      error => {
-        alert("An unexpected error occured.");
-        console.log(error);
-      });
+    });
   }
 
   deletePost(post) {
 
-    this.service.deletePost(post.id).subscribe(response => {
+    this.service.deletePost(333).subscribe(response => {
       let index = this.posts.indexOf(post);
       this.posts.splice(index, 1);
     },
-      (error: Response) => {
+      (error: AppError) => {
 
-        if (error.status === 404) {
-          alert("This post already been deleted.");
+        if (error instanceof NotFoundError) {
+          alert("This post has already been deleted.");
         } else {
-          alert("An unexpected error occured.");
-          console.log(error);
+          throw error;
         }
 
       });
