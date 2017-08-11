@@ -11,16 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-
   posts: any[];
-
 
   constructor(private service: PostService) {
 
   }
 
   ngOnInit(): void {
-    this.service.getPosts().subscribe(response => {
+    this.service.getAll().subscribe(response => {
       this.posts = response.json();
     });
   }
@@ -32,7 +30,7 @@ export class PostsComponent implements OnInit {
 
     input.value = "";
 
-    this.service.createPost(post).subscribe(response => {
+    this.service.create(post).subscribe(response => {
       post['id'] = response.json().id;
 
       this.posts.splice(0, 0, post);
@@ -50,14 +48,14 @@ export class PostsComponent implements OnInit {
   }
 
   updatePost(post) {
-    this.service.updatePost(post).subscribe(response => {
+    this.service.update(post).subscribe(response => {
       console.log(response.json());
     });
   }
 
   deletePost(post) {
 
-    this.service.deletePost(333).subscribe(response => {
+    this.service.delete(333).subscribe(response => {
       let index = this.posts.indexOf(post);
       this.posts.splice(index, 1);
     },
@@ -71,5 +69,4 @@ export class PostsComponent implements OnInit {
 
       });
   }
-
 }
