@@ -42,7 +42,7 @@ export class DataService {
     delete(id) {
         return this.http.delete(this.url + '/' + id)
             .map(response => response.json())
-            .toPromise()
+            // .toPromise()
             .catch(this.handleError);
     }
 
