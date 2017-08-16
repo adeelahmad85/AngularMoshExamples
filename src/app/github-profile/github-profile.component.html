@@ -1,4 +1,6 @@
 <p>
   github-profile works!
 </p>
-<button [routerLink]="['/followers',12345]" class="btn btn-primary"> Next </button>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <button class="btn btn-primary">Submit</button>
+</form>
